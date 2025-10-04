@@ -1,9 +1,21 @@
 import { isPathProtected, isPathAdmin } from '@/app/path';
 import NextAuth, { User } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
+import { JWT } from 'next-auth/jwt';
 
 declare module 'next-auth' {
   interface User {
+    role?: 'admin' | 'viewer';
+  }
+  interface Session {
+    user: {
+      role?: 'admin' | 'viewer';
+    } & User;
+  }
+}
+
+declare module 'next-auth/jwt' {
+  interface JWT {
     role?: 'admin' | 'viewer';
   }
 }
