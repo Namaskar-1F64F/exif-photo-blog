@@ -34,6 +34,7 @@ import { KEY_COMMANDS } from '@/photo/key-commands';
 import { useAppText } from '@/i18n/state/client';
 import IconLock from '@/components/icons/IconLock';
 import IconTrash from '@/components/icons/IconTrash';
+import { useIsAdmin } from '@/auth/hooks';
 
 export default function AdminPhotoMenu({
   photo,
@@ -50,6 +51,7 @@ export default function AdminPhotoMenu({
   const { isUserSignedIn, registerAdminUpdate } = useAppState();
 
   const appText = useAppText();
+  const isAdmin = useIsAdmin();
 
   const path = usePathname();
   const pathComponents = getPathComponents(path);
@@ -92,23 +94,26 @@ export default function AdminPhotoMenu({
         },
       });
     }
-    items.push({
-      label: photo.hidden ? appText.admin.public : appText.admin.private,
-      icon: <IconLock
-        size={16}
-        className="translate-x-[-1.5px] translate-y-[0.5px]"
-        open={!photo.hidden}
-        narrow
-      />,
-      action: () => togglePrivatePhotoAction(
-        photo.id,
-        redirectPathOnPrivateToggle,
-      )
-        .then(() => revalidatePhoto?.(photo.id)),
-      ...showKeyCommands && {
-        keyCommand: KEY_COMMANDS.togglePrivate,
-      },
-    });
+    // Only show private/public toggle for admins
+    if (isAdmin) {
+      items.push({
+        label: photo.hidden ? appText.admin.public : appText.admin.private,
+        icon: <IconLock
+          size={16}
+          className="translate-x-[-1.5px] translate-y-[0.5px]"
+          open={!photo.hidden}
+          narrow
+        />,
+        action: () => togglePrivatePhotoAction(
+          photo.id,
+          redirectPathOnPrivateToggle,
+        )
+          .then(() => revalidatePhoto?.(photo.id)),
+        ...showKeyCommands && {
+          keyCommand: KEY_COMMANDS.togglePrivate,
+        },
+      });
+    }
     items.push({
       label: appText.admin.download,
       icon: <MdOutlineFileDownload
@@ -148,6 +153,7 @@ export default function AdminPhotoMenu({
     shouldRedirectFav,
     redirectPathOnPrivateToggle,
     revalidatePhoto,
+    isAdmin,
   ]);
 
   const sectionDelete: MoreMenuSection = useMemo(() => ({
