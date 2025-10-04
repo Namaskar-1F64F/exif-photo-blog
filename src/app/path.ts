@@ -454,10 +454,19 @@ export const isPathAdminInfo = (pathname?: string) =>
   isPathAdminInsights(pathname) ||
   isPathAdminConfiguration(pathname);
 
-export const isPathProtected = (pathname?: string) =>
-  checkPathPrefix(pathname, PATH_ADMIN) ||
-  checkPathPrefix(pathname, pathForTag(TAG_PRIVATE)) ||
-  checkPathPrefix(pathname, PATH_OG);
+export const isPathProtected = (pathname?: string) => {
+  // Don't protect sign-in page
+  if (isPathSignIn(pathname)) {
+    return false;
+  }
+
+  // Don't protect OG image routes (needed for social media previews)
+  if (pathname?.endsWith('/image')) {
+    return false;
+  }
+
+  return true;
+};
 
 export const getPathComponents = (
   pathname = '',
