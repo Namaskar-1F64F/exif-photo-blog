@@ -1,19 +1,3 @@
-import { DefaultSession } from 'next-auth';
-
-declare module 'next-auth' {
-  interface User {
-    role?: 'admin' | 'viewer';
-  }
-
-  interface Session {
-    user: {
-      role?: 'admin' | 'viewer';
-    } & DefaultSession['user'];
-  }
-}
-
-declare module 'next-auth/jwt' {
-  interface JWT {
-    role?: 'admin' | 'viewer';
-  }
-}
+// Type declarations moved to src/auth/server.ts
+// This file is kept for backwards compatibility but is no longer used
+export {};
