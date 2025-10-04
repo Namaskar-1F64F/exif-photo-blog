@@ -106,7 +106,7 @@ export const TEXT = {
     signIn: 'Sign In',
     signOut: 'Sign Out',
     email: 'Admin Email',
-    password: 'Admin Password',
+    password: 'Password (hint: my first name lowercase)',
     invalidEmailPassword: 'Invalid email/password',
   },
   admin: {

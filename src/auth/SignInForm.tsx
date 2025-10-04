@@ -38,7 +38,7 @@ export default function SignInForm({
 
   const appText = useAppText();
 
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState('viewer@tgs.photos');
   const [password, setPassword] = useState('');
   const [response, action] = useActionState(signInAction, undefined);
 
