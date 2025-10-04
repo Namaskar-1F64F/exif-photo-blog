@@ -45,13 +45,11 @@ export const config = {
   // - /_next/static*
   // - /_next/image*
   // - /favicon.ico + /favicons/*
-  // - /grid
-  // - /full
-  // - / (root)
+  // - /sign-in
   // - /home-image
   // - /template-image
   // - /template-image-tight
   // - /template-url
   // eslint-disable-next-line max-len
-  matcher: ['/((?!api$|api/auth|_next/static|_next/image|favicon.ico$|favicons/|home-image$|template-image$|template-image-tight$|template-url$).*)'],
+  matcher: ['/((?!api$|api/auth|_next/static|_next/image|favicon.ico$|favicons/|sign-in$|home-image$|template-image$|template-image-tight$|template-url$).*)'],
 };
