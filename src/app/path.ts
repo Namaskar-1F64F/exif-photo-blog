@@ -465,6 +465,28 @@ export const isPathProtected = (pathname?: string) => {
     return false;
   }
 
+  if (
+    isPathPhoto(pathname) ||
+    isPathAlbum(pathname) ||
+    isPathAlbumPhoto(pathname) ||
+    isPathTag(pathname) ||
+    isPathTagPhoto(pathname) ||
+    isPathCamera(pathname) ||
+    isPathCameraPhoto(pathname) ||
+    isPathLens(pathname) ||
+    isPathLensPhoto(pathname) ||
+    isPathFilm(pathname) ||
+    isPathFilmPhoto(pathname) ||
+    isPathFocalLength(pathname) ||
+    isPathFocalLengthPhoto(pathname) ||
+    isPathRecipe(pathname) ||
+    isPathRecipePhoto(pathname) ||
+    isPathYear(pathname) ||
+    isPathYearPhoto(pathname)
+  ) {
+    return false;
+  }
+
   return true;
 };
 
