@@ -195,7 +195,7 @@ export default function AdminPhotoMenu({
   , [sectionMain, sectionDelete]);
 
   return (
-    isUserSignedIn
+    isUserSignedIn && isAdmin
       ? <MoreMenu {...{
         ...props,
         sections,

@@ -42,6 +42,13 @@ export const {
       if (user) {
         token.role = user.role;
       }
+      if (!token.role && token.email) {
+        if (token.email === process.env.ADMIN_EMAIL) {
+          token.role = 'admin';
+        } else if (token.email === process.env.VIEWER_EMAIL) {
+          token.role = 'viewer';
+        }
+      }
       return token;
     },
     async session({ session, token }) {

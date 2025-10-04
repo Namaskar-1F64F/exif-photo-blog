@@ -2,9 +2,10 @@
 
 import useSWR from 'swr';
 import { getAuthAction } from '@/auth/actions';
+import { SWR_KEYS } from '@/swr';
 
 export const useAuth = () => {
-  const { data: auth } = useSWR('auth', getAuthAction);
+  const { data: auth } = useSWR(SWR_KEYS.GET_AUTH, getAuthAction);
   return auth;
 };
 
