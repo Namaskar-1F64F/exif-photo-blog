@@ -311,7 +311,7 @@ export default function PhotoLarge({
                   : renderPhotoLink)}
                 <div className="space-y-baseline">
                   {photo.caption &&
-                    <div className="uppercase">
+                    <div>
                       {photo.caption}
                     </div>}
                   {(
